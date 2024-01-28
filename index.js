@@ -5,8 +5,19 @@ var Rates = {
 };
 
 var from_currency = "HUF";
-var to_currency = "HUF";
+var to_currency = "EUR";
 
+
+
+function Switch() {
+    var from = document.getElementById("from");
+    var to = document.getElementById("to");
+    var tmp = from.selectedIndex;
+    from.selectedIndex = to.selectedIndex;
+    to.selectedIndex = tmp;
+    // change_exchange();
+    // convert();
+}
 
 
 function change_exchange() {
@@ -29,10 +40,14 @@ function convert() {
     if (magnitude.checked) {
         result = result * 1000;
     }
-    to_val.innerText = result;
+    to_val.innerText = result.toFixed(2);
     
 }
 
+document.getElementById("from_name").innerText = from_currency + ":";
+document.getElementById("resultName").innerText = to_currency + ":";
+document.getElementById("switch").onclick = Switch;
+document.getElementById("thousand").onchange = convert;
 document.getElementById("from_val").onchange = convert;
 document.getElementById("from").onchange = change_exchange;
 document.getElementById("to").onchange = change_exchange;
