@@ -1,21 +1,38 @@
-Euro_to_forint = 387,58;
-TRY_to_forint = 11,76;
+var Rates = {
+    "HUF" : 1,
+    "EUR" : 387.58,
+    "TRY" : 11.76
+};
+
+var from_currency = "HUF";
+var to_currency = "HUF";
+
+
+
+function change_exchange() {
+    var from = document.getElementById("from");
+    var to = document.getElementById("to");
+    document.getElementById("from_name").innerText = from.options[from.selectedIndex].value + ":";
+    document.getElementById("resultName").innerText = to.options[to.selectedIndex].value + ":";
+    from_currency = from.options[from.selectedIndex].value;
+    to_currency = to.options[to.selectedIndex].value;
+    convert();
+
+}
 
 
 function convert() {
     var magnitude = document.getElementById("thousand");
-    console.log(magnitude);
-    var input = document.getElementById("forint").value;
-    var euro_output = document.getElementById("EURO");
-    var euro_val = input * (1 / Euro_to_forint)
-    var try_output = document.getElementById("TRY");
-    var try_val = input * (1 / TRY_to_forint)
+    var input = document.getElementById("from_val").value;
+    var to_val = document.getElementById("resultVal");
+    var result = input * Rates[from_currency] / Rates[to_currency];
     if (magnitude.checked) {
-        euro_val = euro_val * 1000;
-        try_val = try_val * 1000;
+        result = result * 1000;
     }
-    euro_output.innerHTML = euro_val.toFixed(2);
-    try_output.innerHTML = try_val.toFixed(2);
+    to_val.innerText = result;
+    
 }
 
-document.getElementById("convert").onclick = convert;
+document.getElementById("from_val").onchange = convert;
+document.getElementById("from").onchange = change_exchange;
+document.getElementById("to").onchange = change_exchange;

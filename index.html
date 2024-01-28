@@ -2,24 +2,36 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Forint Conversion</title>
+    <title>Currency Conversion</title>
 </head>
 <body>
     <div>
-        <h1>Forint Converter</h1><br>
+        <h1>Currency Converter</h1><br>
+        <form>
+            <label>From:</label>
+            <select id="from">
+                <option value="HUF">HUF</option>
+                <option value="EUR">EUR</option>
+                <option value="TRY">TRY</option>
+            </select>
+            <label>To:</label>
+            <select id="to">
+                <option value="HUF">HUF</option>
+                <option value="EUR">EUR</option>
+                <option value="TRY">TRY</option>
+            </select>
+        </form>
         <form>
             <input type="checkbox" id="thousand" name="magnitude" checked>
             <label for="thousad">1000</label>
             <br>
-            <label>Forint:</label>
-            <input type="number" id="forint" value="0"><br>
-        </form><br>
-        <button id="convert" style="width: 70%; height: 40px;">Convert</button>
+            <label id="from_name">HUF:</label>
+            <input type="number" id="from_val" value="0"><br>
+        </form>
     </div>
-    <div id="result">
+    <div>
         <h2>Result:</h2>
-        <p>Euro:</p><p id="EURO"></p>
-        <p>TRY:</p><p id="TRY"></p>
+        <p id="resultName">"HUF"</p><p id="resultVal">0</p>
     </div>
 <script src="index.js"></script>
 </body>
