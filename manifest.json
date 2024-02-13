@@ -1,8 +1,12 @@
 {
     "manifest_version": 3,
-    "name": "Forint Converter",
+    "name": "Currency Converter",
     "version": "1.0",
     "description": "My converter",
+    "icons": {
+        "16" : "icon16.png",
+        "128" : "icon.png"
+    },
     "action": {
         "default_popup": "index.html"
     },
