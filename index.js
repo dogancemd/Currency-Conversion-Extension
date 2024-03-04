@@ -1,9 +1,9 @@
 var Rates = { "HUF": 1, "TRY": 11.584, "EUR": 393.904, "PLN": 91.1598, "USD": 363.62 }
 
-var from_currency = "HUF";
-var to_currency = "EUR";
-
-
+var from_currency;
+var to_currency;
+var magnitude = 1;
+_IP = "http://localhost:5000"
 
 function Switch() {
     var from = document.getElementById("from");
@@ -27,24 +27,45 @@ function change_exchange() {
 
 }
 
+function change_magnitude() {
+    var magnitude_elements = document.getElementsByName("magnitude");
+    for (element  in magnitude_elements) {
+        if (magnitude_elements[element].checked) {
+            magnitude = magnitude_elements[element].value;
+            break;
+        }
+    }
+    convert();
+}
 
 function convert() {
-    var magnitude = document.getElementById("thousand");
     var input = document.getElementById("from_val").value;
     var to_val = document.getElementById("resultVal");
-    var result = input * Rates[from_currency] / Rates[to_currency];
-    if (magnitude.checked) {
-        result = result * 1000;
-    }
+    var result = input * Rates[from_currency] * magnitude / Rates[to_currency];
     to_val.innerText = result.toFixed(2);
     
 }
 
+function refresh_rates() {
+    fetch(_IP+"/api/rates")
+        .then(response => response.json())
+        .then(data => {
+            Rates = data.rates;
+            console.log("Rates refreshed");
+        });
+
+}
+
+
 document.getElementById("from_name").innerText = from_currency + ":";
 document.getElementById("resultName").innerText = to_currency + ":";
 document.getElementById("switch").onclick = Switch;
-document.getElementById("thousand").onchange = convert;
 document.getElementById("from_val").onchange = convert;
+document.getElementById("refresh").onclick = refresh_rates;
+magnitude_elements = document.getElementsByName("magnitude")
+for (element in magnitude_elements) {
+    magnitude_elements[element].onchange = change_magnitude;
+}
 var from_element = document.getElementById("from")
 var to_element = document.getElementById("to")
 for ( currency in Rates){
@@ -58,3 +79,4 @@ for ( currency in Rates){
 }
 document.getElementById("from").onchange = change_exchange;
 document.getElementById("to").onchange = change_exchange;
+change_exchange();

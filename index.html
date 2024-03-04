@@ -2,30 +2,53 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Currency Conversion</title>
+    <title>Currency Conversion</title> 
+    <style>
+        .radio_side_by_side {
+            display: inline;
+        }
+    </style>
 </head>
 <body>
     <div>
         <h1>Currency Converter</h1><br>
+        <button id="refresh">Refresh rates</button>
         <div style="display: inline-block;">
-            <form style="display: inline-block;">
-                <label>From:</label>
-                <select id="from">
-                </select>
-            </form>
-            <button id="switch" style="display: inline-block;"> &lt-&gt </button>
-            <form style="display: inline-block;">
-                <label>To:</label>
-                <select id="to">
-                </select>
-            </form>
-            <form>
-                <input type="checkbox" id="thousand" name="magnitude" >
-                <label for="thousad">1000</label>
-                <br>
-                <label id="from_name"></label>
-                <input type="number" id="from_val" value="0"><br>
-            </form>
+            <table>
+                <tr>
+                    <th>From:</th>
+                    <th> </th>
+                    <th>To:</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="from">
+                        </select>
+                    </td>
+                    <td>
+                        <button id="switch" style="display: inline-block;"> &lt-&gt </button>
+                    </td>
+                    <td>
+                        <select id="to">
+                        </select>
+                    </td>
+            </table>
+            <div>
+            <h3>Magnitude:</h3>
+            <input type="radio" id="option1" name="magnitude" value=1 class="radio_side_by_side" checked="true">
+            <label for="option1" class="radio_side_by_side">1</label>
+
+            <input type="radio" id="option2" name="magnitude" value="10" class="radio_side_by_side">
+            <label for="option2" class="radio_side_by_side">10</label><br>
+
+            <input type="radio" id="option3" name="magnitude" value="100" class="radio_side_by_side">
+            <label for="option3" class="radio_side_by_side">100</label>
+
+            <input type="radio" id="option4" name="magnitude" value="1000" class="radio_side_by_side">
+            <label for="option4" class="radio_side_by_side">1000</label>
+            <br>
+            <h3 id="from_name"></h3>
+            <input type="number" id="from_val" ><br>
         </div>
     </div>
     <div>
