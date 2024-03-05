@@ -51,6 +51,7 @@ function refresh_rates() {
         .then(response => response.json())
         .then(data => {
             Rates = data.rates;
+            document.getElementById("refresh-info").innerHTML = data.timestamp;
             console.log("Rates refreshed");
         });
 

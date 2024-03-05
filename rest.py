@@ -20,7 +20,7 @@ def get_rates():
         timestamp = datetime.datetime.now()
         with open("rates.json", 'w', encoding='utf-8') as f:
             json.dump({"rates":currency_rates,"timestamp":timestamp.strftime("%Y-%m-%d %H:%M:%S")}, f)
-    return jsonify(currency_rates)
+    return jsonify({"rates":currency_rates,"timestamp":timestamp.strftime("%Y-%m-%d %H:%M:%S")})
 
 if __name__ == '__main__':
     try:
