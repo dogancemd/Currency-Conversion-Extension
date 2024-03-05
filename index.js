@@ -80,4 +80,5 @@ for ( currency in Rates){
 }
 document.getElementById("from").onchange = change_exchange;
 document.getElementById("to").onchange = change_exchange;
+refresh_rates();
 change_exchange();
